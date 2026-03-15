@@ -35,10 +35,7 @@ def main():
     if argc.length < 4: print('Ошибка: Минимальная длина паролей - 4 символа'); sys.exit()
     if argc.count < 1: print('Ошибка: Минимальное количество генерируемых паролей - 1'); sys.exit()
 
-    try:
-        lines = load_common_passwords(argc.dictionary)
-    except FileNotFoundError:
-        print(f'Ошибка: Файл словаря "{argc.dictionary}" не найден'); sys.exit()
+    lines = load_common_passwords(argc.dictionary)
 
     alphabet = string.ascii_letters + string.digits + string.punctuation
     passwords_list = [generate_password(argc.length, lines, alphabet) for _ in range(argc.count)]
