@@ -30,11 +30,16 @@ def main():
     parser.add_argument('-l', '--length', type=int, default=16, help='Длина генерируемого пароля')
     parser.add_argument('-c', '--count', type=int, default=1, help='Число генерируемых паролей')
     parser.add_argument('-w', '--write', type=str, default='', help='Куда записать')
+    parser.add_argument('-d', '--dictionary', type=str, default='10-char-common-passwords.txt', help='Кастомный словарь для проверки')
     argc = parser.parse_args()
     if argc.length < 4: print('Ошибка: Минимальная длина паролей - 4 символа'); sys.exit()
     if argc.count < 1: print('Ошибка: Минимальное количество генерируемых паролей - 1'); sys.exit()
 
-    lines = load_common_passwords('10-char-common-passwords.txt')
+    try:
+        lines = load_common_passwords(argc.dictionary)
+    except FileNotFoundError:
+        print(f'Ошибка: Файл словаря "{argc.dictionary}" не найден'); sys.exit()
+
     alphabet = string.ascii_letters + string.digits + string.punctuation
     passwords_list = [generate_password(argc.length, lines, alphabet) for _ in range(argc.count)]
     if argc.write == '':
