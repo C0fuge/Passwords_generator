@@ -19,14 +19,16 @@
    git clone [https://github.com/ВАШ_НИК/password-generator.git](https://github.com/ВАШ_НИК/password-generator.git)
    cd password-generator
 2. Убедитесь, что файл со словарем (10-char-common-passwords.txt) находится в директории со скриптом.
-3. Запустите скрипт через командную строку:
+
+4. Запустите скрипт через командную строку:
    ```bash
    python Passwords.py [аргументы]
 
 ## Использование
 
 Скрипт работает через интерфейс командной строки (CLI) и использует только стандартные библиотеки Python.
-**Базовый синтаксис**```bash
+### Базовый синтаксис
+   ```bash`
    python Passwords.py [-h] [-l LENGTH] [-c COUNT] [-w WRITE] [-d DICT]
 
 ## Примеры запуска
